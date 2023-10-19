@@ -1,4 +1,5 @@
 import { Exercise } from "../utils/types"
+import Tag from "./Tag";
 
 type Props = {
   exercise: Exercise
@@ -14,7 +15,7 @@ const ExerciseCard = ({ exercise }: Props) => {
         details.map((detail, index) => <p key={index}>{detail}</p>)
       }
       {
-        tags.map((tag, index) => <p key={index}>{tag}</p>)
+        tags.map((tag, index) => <Tag key={index} name={tag} />)
       }
     </div>
   )
