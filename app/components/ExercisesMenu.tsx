@@ -1,5 +1,6 @@
 import { Exercise } from "../utils/types";
 import ExerciseCard from "./ExerciseCard";
+import classes from '../style/exercisesMenu.module.css'
 
 type Props = {
   exercises: Exercise[]
@@ -8,8 +9,8 @@ type Props = {
 const ExercisesMenu = ({ exercises }: Props) => {
   return (
     <>
-      <h1 className="my-8 text-6xl text-center">Start session</h1>
-      <div className="flex flex-col gap-4 items-center">
+      <h1 className={`${classes.title} py-10 text-6xl text-center sticky top-0 z-10`}>Start session</h1>
+      <div className="mb-10 grid gap-4 justify-items-center">
         {
           exercises.map((exercise, index) => <ExerciseCard key={index} exercise={exercise} />)
         }

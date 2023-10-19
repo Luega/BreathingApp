@@ -6,3 +6,7 @@ html {
   color: var(--secondaryColor);
   font-size: 100%;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}
