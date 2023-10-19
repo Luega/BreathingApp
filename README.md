@@ -1,37 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+#BreathingApp
 
-First, run the development server:
+Introducing BreathingApp, your daily companion for stress relief and mindfulness. Designed for desk workers, it offers quick breaks to escape daily stress. Harness the power of deep breathing to relax and rejuvenate your mind. With BreathingApp, you can find moments of calm in your hectic day, promoting well-being and productivity. Take a breath, take a break, and take control of your workday stress with BreathingApp.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Figma Sketch
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Initial Figma sketch:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![My Image](screenshot/initial_figma_sketch.jpeg)
 
-## Learn More
+Link to the updated Figma project: 
 
-To learn more about Next.js, take a look at the following resources:
+https://www.figma.com/file/0HJHHtXcy1nXp1qhOyox4Z/Figma-basics?type=design&node-id=1669%3A162202&mode=design&t=sHMKXnMuTIC7bwlq-1
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Link to the Figma prototype: 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+https://www.figma.com/proto/0HJHHtXcy1nXp1qhOyox4Z/Figma-basics?type=design&node-id=502-14&t=1tztJCrT7Jzm5NkQ-1&scaling=scale-down&page-id=1669%3A162202&starting-point-node-id=502%3A14&mode=design
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# BreathingApp
