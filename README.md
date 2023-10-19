@@ -1,5 +1,5 @@
 
-#BreathingApp
+# BreathingApp
 
 Introducing BreathingApp, your daily companion for stress relief and mindfulness. Designed for desk workers, it offers quick breaks to escape daily stress. Harness the power of deep breathing to relax and rejuvenate your mind. With BreathingApp, you can find moments of calm in your hectic day, promoting well-being and productivity. Take a breath, take a break, and take control of your workday stress with BreathingApp.
 
