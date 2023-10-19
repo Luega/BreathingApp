@@ -2,6 +2,7 @@
 
 import BreathingAnimation from "./components/BreathingAnimation"
 import ExercisesMenu from "./components/ExercisesMenu"
+import Modal from "./components/Modal"
 import { Exercise } from "./utils/types"
 
 export default function BreathingApp() {
@@ -22,6 +23,7 @@ export default function BreathingApp() {
     <div>
       <ExercisesMenu exercises={exercises} />
       <BreathingAnimation />
+      <Modal />
     </div>
   )
 }
