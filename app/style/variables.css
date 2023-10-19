@@ -1,0 +1,9 @@
+:root {
+  --primaryColorDark: #0f133c;
+  --primaryColorLight: #261462;
+  --secondaryColor: #e4cae5;
+  --alertColor: #fcd561;
+
+  --borderRadiusRegular: 16px;
+  --borderRadiusBig: 32px;
+}

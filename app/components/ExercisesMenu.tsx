@@ -7,12 +7,14 @@ type Props = {
 
 const ExercisesMenu = ({ exercises }: Props) => {
   return (
-    <div>
-      <h1>Start session</h1>
-      {
-        exercises.map((exercise, index) => <ExerciseCard key={index} exercise={exercise} />)
-      }
-    </div>
+    <>
+      <h1 className="my-8 text-6xl text-center">Start session</h1>
+      <div className="flex flex-col justify-center">
+        {
+          exercises.map((exercise, index) => <ExerciseCard key={index} exercise={exercise} />)
+        }
+      </div>
+    </>
   )
 }
 

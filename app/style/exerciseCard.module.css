@@ -1,0 +1,18 @@
+.card {
+  position: relative;
+  background-color: var(--primaryColorLight);
+  border-radius: var(--borderRadiusRegular);
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+  width: 80px;
+  height: 80px;
+  background-color: var(--alertColor);
+  border-radius: 50%;
+}

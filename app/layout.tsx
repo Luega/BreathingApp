@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import './style/globals.css'
+import './style/variables.css'
 
 export const metadata: Metadata = {
   title: 'BreathingApp',
