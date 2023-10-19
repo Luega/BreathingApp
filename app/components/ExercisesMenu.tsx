@@ -9,7 +9,7 @@ const ExercisesMenu = ({ exercises }: Props) => {
   return (
     <>
       <h1 className="my-8 text-6xl text-center">Start session</h1>
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col gap-4 items-center">
         {
           exercises.map((exercise, index) => <ExerciseCard key={index} exercise={exercise} />)
         }

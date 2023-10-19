@@ -17,7 +17,7 @@ const ExerciseCard = ({ exercise }: Props) => {
           details.map((detail, index) => <p key={index}>{detail}</p>)
         }
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-4 absolute bottom-3 left-3">
         {
           tags.map((tag, index) => <Tag key={index} name={tag} />)
         }

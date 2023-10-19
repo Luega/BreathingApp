@@ -4,6 +4,7 @@
   --secondaryColor: #e4cae5;
   --alertColor: #fcd561;
 
+  --borderRadiusSmall: 8px;
   --borderRadiusRegular: 16px;
   --borderRadiusBig: 32px;
 }
