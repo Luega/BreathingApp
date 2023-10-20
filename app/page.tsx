@@ -32,11 +32,11 @@ export default function BreathingApp() {
 
   return (
     <div className={`${classes.container} w-full h-screen grid grid-cols-4`}>
+      <Modal />
       <div className="h-screen col-span-1 overflow-auto">
         <ExercisesMenu exercises={exercises} />
       </div>
       <div className="h-screen col-span-3">
-        <BreathingAnimation />
       </div>
     </div>
   )

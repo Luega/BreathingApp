@@ -1,0 +1,30 @@
+.container {
+  color: var(--primaryColorLight);
+  background-color: var(--secondaryColor);
+  border-radius: var(--borderRadiusRegular);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.inhaleTime {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  font-size: 4rem;
+  text-align: center;
+  color: var(--alertColor);
+  background-color: var(--primaryColorLight);
+  border-radius: var(--borderRadiusSmall);
+}
+
+.inhaleTime::-webkit-outer-spin-button,
+.inhaleTime::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inhaleTime[type="number"] {
+  -moz-appearance: textfield;
+}
