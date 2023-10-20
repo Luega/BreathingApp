@@ -38,10 +38,10 @@ export default function BreathingApp() {
       {
         isModalOpened && <Modal />
       }
-      <div className="h-screen col-span-1 overflow-auto">
+      <div className="lg:h-screen col-span-4 lg:col-span-1 overflow-auto">
         <ExercisesMenu exercises={exercises} />
       </div>
-      <div className="h-screen col-span-3">
+      <div className="lg:h-screen col-span-4 lg:col-span-3">
       </div>
     </div>
   )
