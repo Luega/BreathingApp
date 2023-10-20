@@ -1,3 +1,11 @@
+.modal {
+  background-color: rgba(000, 000, 000, 0.8);
+}
+
+.closeBtn {
+  color: var(--secondaryColor);
+}
+
 .container {
   color: var(--primaryColorLight);
   background-color: var(--secondaryColor);
@@ -8,15 +16,19 @@
   transform: translate(-50%, -50%);
 }
 
+.inhaleTime,
+.apneaBtn {
+  color: var(--alertColor);
+  background-color: var(--primaryColorLight);
+  border-radius: var(--borderRadiusSmall);
+  text-align: center;
+}
+
 .inhaleTime {
   width: 150px;
   height: 150px;
   margin: 0 auto;
   font-size: 4rem;
-  text-align: center;
-  color: var(--alertColor);
-  background-color: var(--primaryColorLight);
-  border-radius: var(--borderRadiusSmall);
 }
 
 .inhaleTime::-webkit-outer-spin-button,
@@ -27,4 +39,8 @@
 
 .inhaleTime[type="number"] {
   -moz-appearance: textfield;
+}
+
+.apneaBtn {
+  padding: 1.5rem 1rem;
 }

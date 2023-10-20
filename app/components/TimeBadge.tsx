@@ -1,3 +1,5 @@
+import classes from '../style/timeBadge.module.css'
+
 type Props = {
     emoji: string,
     time: string,
@@ -5,10 +7,10 @@ type Props = {
 
 const TimeBadge = ({ emoji, time }: Props) => {
     return (
-        <div>
-            <p>{emoji}</p>
+        <button className={`${classes.timeBadge} shadow-xl`}>
+            <p className='mb-2 text-4xl'>{emoji}</p>
             <p>{time}</p>
-        </div>
+        </button>
     )
 }
 

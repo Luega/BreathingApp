@@ -1,0 +1,6 @@
+.timeBadge {
+  padding: 0.5rem;
+  color: var(--secondaryColor);
+  background-color: var(--primaryColorLight);
+  border-radius: var(--borderRadiusSmall);
+}

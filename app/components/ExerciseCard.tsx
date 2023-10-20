@@ -10,7 +10,7 @@ const ExerciseCard = ({ exercise }: Props) => {
   const { title, details, tags } = exercise;
 
   return (
-    <div className={`${classes.card} p-4`}>
+    <div className={`${classes.card} p-4 shadow-xl`}>
       <h1 className="text-xl uppercase">{title}</h1>
       <div className="my-4 font-thin">
         {
