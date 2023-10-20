@@ -5,8 +5,11 @@ import ExercisesMenu from "./components/ExercisesMenu"
 import Modal from "./components/Modal"
 import { Exercise } from "./utils/types"
 import classes from "./style/breathingApp.module.css"
+import { useState } from "react"
 
 export default function BreathingApp() {
+  const [isModalOpened, setIsModalOpened] = useState<Boolean>(false);
+
   const exercises: Exercise[] = [
     {
       title: "Symmetric breathing",
@@ -32,7 +35,9 @@ export default function BreathingApp() {
 
   return (
     <div className={`${classes.container} w-full h-screen grid grid-cols-4`}>
-      <Modal />
+      {
+        isModalOpened && <Modal />
+      }
       <div className="h-screen col-span-1 overflow-auto">
         <ExercisesMenu exercises={exercises} />
       </div>
