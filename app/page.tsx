@@ -34,14 +34,14 @@ export default function BreathingApp() {
   ]
 
   return (
-    <div className={`${classes.container} w-full h-screen grid grid-cols-4`}>
+    <div className={`${classes.container} w-full h-screen grid grid-rows-2 lg:grid-cols-4`}>
       {
         isModalOpened && <Modal />
       }
       <div className="lg:h-screen col-span-4 lg:col-span-1 overflow-auto">
         <ExercisesMenu exercises={exercises} />
       </div>
-      <div className="lg:h-screen col-span-4 lg:col-span-3">
+      <div className={`${classes.animationContainer} lg:h-screen col-span-4 lg:col-span-3 z-10`}>
       </div>
     </div>
   )
