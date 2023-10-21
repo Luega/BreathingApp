@@ -42,6 +42,7 @@ export default function BreathingApp() {
         <ExercisesMenu exercises={exercises} />
       </div>
       <div className={`${classes.animationContainer} lg:h-screen col-span-4 lg:col-span-3 z-10`}>
+        <BreathingAnimation />
       </div>
     </div>
   )

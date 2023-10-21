@@ -1,0 +1,17 @@
+.white_circle {
+  border: 2px solid var(--secondaryColor);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.yellow_circle {
+  background-color: var(--alertColor);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
