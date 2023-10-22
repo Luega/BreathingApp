@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './style/globals.css'
 import './style/variables.css'
+import { BreathingAppContextProvider } from './contexts/breathingAppContext'
 
 export const metadata: Metadata = {
   title: 'BreathingApp',
@@ -14,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <BreathingAppContextProvider>
+        <body>{children}</body>
+      </BreathingAppContextProvider>
     </html>
   )
 }

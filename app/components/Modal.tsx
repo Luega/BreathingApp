@@ -1,11 +1,24 @@
 import React from 'react'
 import TimeBadge from './TimeBadge'
 import classes from '../style/modal.module.css'
+import { useBreathingAppContext } from '../contexts/breathingAppContext'
+import { State } from '../utils/types'
 
 const Modal = () => {
+    const { state, setState } = useBreathingAppContext();
+
+    const closeModalHandler = () => {
+        setState((prevState: State) => {
+            return {
+                ...prevState,
+                isModalOpened: false
+            }
+        });
+    }
+
     return (
         <div className={`${classes.modal} w-screen h-screen absolute z-40`}>
-            <button className={`${classes.closeBtn} absolute top-10 right-10`}>X</button>
+            <button className={`${classes.closeBtn} absolute top-10 right-10`} onClick={() => closeModalHandler()}>X</button>
             <div className={`${classes.container} p-10 grid grid-cols-3`}>
                 <div className='col-span-3 lg:col-span-1 flex flex-col justify-center text-center'>
                     <p className='mb-2'>Inhale time in seconds</p>
