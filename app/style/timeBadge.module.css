@@ -4,3 +4,7 @@
   background-color: var(--primaryColorLight);
   border-radius: var(--borderRadiusSmall);
 }
+
+.selected {
+  background-color: var(--secondaryColorDark);
+}

@@ -1,4 +1,4 @@
-import { Exercise, State } from "../utils/types"
+import { Exercise, ExerciseName, State } from "../utils/types"
 import Tag from "./Tag";
 import classes from '../style/exerciseCard.module.css'
 import { useBreathingAppContext } from "../contexts/breathingAppContext";
@@ -11,17 +11,18 @@ const ExerciseCard = ({ exercise }: Props) => {
   const { title, details, tags } = exercise;
   const { state, setState } = useBreathingAppContext();
 
-  const openModalHandler = () => {
+  const openModalHandler = (title: string) => {
     setState((prevState: State) => {
       return {
         ...prevState,
+        exerciseName: title as ExerciseName,
         isModalOpened: true
       }
     });
   }
 
   return (
-    <div className={`${classes.card} p-4 shadow-xl cursor-pointer`} onClick={() => openModalHandler()}>
+    <div className={`${classes.card} p-4 shadow-xl cursor-pointer`} onClick={() => openModalHandler(title.split(" ")[0].toLowerCase())}>
       <h1 className="text-xl uppercase">{title}</h1>
       <div className="my-4 font-thin">
         {

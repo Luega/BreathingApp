@@ -47,3 +47,7 @@
 .apneaBtn {
   padding: 1.5rem 1rem;
 }
+
+.selected {
+  background-color: var(--secondaryColorDark);
+}

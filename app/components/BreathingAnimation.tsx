@@ -2,11 +2,15 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useBreathingAppContext } from "../contexts/breathingAppContext";
 import classes from "../style/breathingAnimation.module.css"
+import { State } from "../utils/types";
 
 const BreathingAnimation = () => {
   const { state, setState } = useBreathingAppContext();
   const [breathingPhase, setBreathingPhase] = useState<string>("Click to start");
   const [startAnimation, setStartAnimation] = useState<boolean>(false);
+
+  console.log(state);
+
 
   const gsapContainer = useRef(null);
   const breathingTl = useRef<GSAPTimeline>();
@@ -36,7 +40,16 @@ const BreathingAnimation = () => {
     }
   }, [startAnimation]);
 
-  const restartHandler = () => {
+  const startHandler = () => {
+    if (loops <= 0) {
+      setState((prevState: State) => {
+        return {
+          ...prevState,
+          isModalOpened: true
+        }
+      });
+      return
+    }
     setStartAnimation(!startAnimation);
     setBreathingPhase("Click to start")
   }
@@ -49,7 +62,7 @@ const BreathingAnimation = () => {
           <div className={`${classes.white_circle} w-[250px] h-[250px] sm:w-[375px] sm:h-[375px] lg:w-[500px] lg:h-[500px] 2xl:w-[625px] 2xl:h-[625px]`}>
             <div className={`${classes.white_circle} w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[400px] lg:h-[400px] 2xl:w-[500px] 2xl:h-[500px]`}>
               <div className={`${classes.white_circle} w-[150px] h-[150px] sm:w-[225px] sm:h-[225px] lg:w-[300px] lg:h-[300px] 2xl:w-[375px] 2xl:h-[375px]`}>
-                <div onClick={() => restartHandler()} id="yellow_circle" className={`${classes.yellow_circle} w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] 2xl:w-[250px] 2xl:h-[250px] cursor-pointer`}>
+                <div onClick={() => startHandler()} id="yellow_circle" className={`${classes.yellow_circle} w-[100px] h-[100px] sm:w-[150px] sm:h-[150px] lg:w-[200px] lg:h-[200px] 2xl:w-[250px] 2xl:h-[250px] cursor-pointer`}>
                   {breathingPhase}
                 </div>
               </div>
