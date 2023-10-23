@@ -15,24 +15,33 @@ const BreathingAnimation = () => {
   const gsapContainer = useRef(null);
   const breathingTl = useRef<GSAPTimeline>();
 
-  const loops = Math.round(state.exerciseTime / (state.inhaleTime * 4)) - 1;
+  let loops = 0;
+  if (!state.expiratoryApnea && !state.inspiratoryApnea) {
+    loops = Math.round(state.exerciseTime / (state.inhaleTime * 2));
+  }
+  if (!state.expiratoryApnea || !state.inspiratoryApnea) {
+    loops = Math.round(state.exerciseTime / (state.inhaleTime * 3));
+  }
+  if (state.expiratoryApnea && state.inspiratoryApnea) {
+    loops = Math.round(state.exerciseTime / (state.inhaleTime * 4));
+  }
 
   useLayoutEffect(() => {
     if (startAnimation) {
       const ctx = gsap.context(() => {
-        breathingTl.current = gsap.timeline(
-          {
-            repeat: loops > 0 ? loops : 0
-          }
-        )
-          .add(() => { setBreathingPhase("IN") })
-          .to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
-          .add(() => { setBreathingPhase("APNEA") })
-          .to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
-          .add(() => { setBreathingPhase("OUT") })
-          .to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
-          .add(() => { setBreathingPhase("APNEA") })
-          .to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
+        breathingTl.current = gsap.timeline({ repeat: loops > 0 ? loops - 1 : 0 });
+        breathingTl.current.add(() => { setBreathingPhase("IN") })
+        breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
+        if (state.inspiratoryApnea) {
+          breathingTl.current.add(() => { setBreathingPhase("APNEA") })
+          breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
+        }
+        breathingTl.current.add(() => { setBreathingPhase("OUT") })
+        breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
+        if (state.expiratoryApnea) {
+          breathingTl.current.add(() => { setBreathingPhase("APNEA") })
+          breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
+        }
 
       }, gsapContainer);
 

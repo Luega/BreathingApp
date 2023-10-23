@@ -9,7 +9,7 @@ type Props = {
 
 const TimeBadge = ({ emoji, time }: Props) => {
     const { state, setState } = useBreathingAppContext();
-    const exerciseTime: number = Number(time.split("m")[0]);
+    const exerciseTime: number = Number(time.split("m")[0]) * 60;
 
     const exerciseTimeHandler = () => {
         setState((prevState) => {

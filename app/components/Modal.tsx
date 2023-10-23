@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import TimeBadge from './TimeBadge'
 import classes from '../style/modal.module.css'
 import { useBreathingAppContext } from '../contexts/breathingAppContext'
@@ -6,6 +6,56 @@ import { useBreathingAppContext } from '../contexts/breathingAppContext'
 const Modal = () => {
     const { state, setState } = useBreathingAppContext();
     const inhaleTimeInput = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        switch (state.exerciseName) {
+            case "symmetric":
+                setState((prevState) => {
+                    return {
+                        ...prevState,
+                        inspiratoryApnea: false,
+                        expiratoryApnea: false,
+                    }
+                });
+                break;
+            case "asymmetric":
+                setState((prevState) => {
+                    return {
+                        ...prevState,
+                        inspiratoryApnea: false,
+                        expiratoryApnea: false,
+                    }
+                });
+                break;
+            case "triangular":
+                setState((prevState) => {
+                    return {
+                        ...prevState,
+                        inspiratoryApnea: false,
+                        expiratoryApnea: true,
+                    }
+                });
+                break;
+            case "box":
+                setState((prevState) => {
+                    return {
+                        ...prevState,
+                        inspiratoryApnea: true,
+                        expiratoryApnea: true,
+                    }
+                });
+                break;
+            default:
+                setState((prevState) => {
+                    return {
+                        ...prevState,
+                        inspiratoryApnea: false,
+                        expiratoryApnea: false,
+                    }
+                });
+                break;
+        }
+    }, []);
 
     const closeModalHandler = () => {
         setState((prevState) => {
