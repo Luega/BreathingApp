@@ -21,7 +21,7 @@ const ExerciseCard = ({ exercise }: Props) => {
   }
 
   return (
-    <div className={`${classes.card} p-4 shadow-xl`} onClick={() => openModalHandler()}>
+    <div className={`${classes.card} p-4 shadow-xl cursor-pointer`} onClick={() => openModalHandler()}>
       <h1 className="text-xl uppercase">{title}</h1>
       <div className="my-4 font-thin">
         {
