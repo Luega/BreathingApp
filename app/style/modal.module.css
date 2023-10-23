@@ -3,7 +3,10 @@
 }
 
 .closeBtn {
-  color: var(--secondaryColor);
+  padding: 0.2rem 0.5rem;
+  color: var(--alertColor);
+  background-color: var(--primaryColorLight);
+  border-radius: var(--borderRadiusSmall);
 }
 
 .container {

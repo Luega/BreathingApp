@@ -18,8 +18,8 @@ const Modal = () => {
 
     return (
         <div className={`${classes.modal} w-screen h-screen absolute z-40`}>
-            <button className={`${classes.closeBtn} absolute top-10 right-10`} onClick={() => closeModalHandler()}>X</button>
-            <div className={`${classes.container} p-10 grid grid-cols-3`}>
+            <div className={`${classes.container} w-[90%] h-[90%] sm:w-auto sm:h-auto p-10 grid grid-cols-3 overflow-auto relative`}>
+                <button className={`${classes.closeBtn} absolute top-3 right-3`} onClick={() => closeModalHandler()}>X</button>
                 <div className='col-span-3 lg:col-span-1 flex flex-col justify-center text-center'>
                     <p className='mb-2'>Inhale time in seconds</p>
                     <input className={`${classes.inhaleTime} shadow-xl`} type="number" name='number' placeholder='3' />
