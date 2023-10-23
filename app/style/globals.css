@@ -5,6 +5,7 @@
 html {
   color: var(--secondaryColor);
   font-size: 100%;
+  background-color: var(--primaryColorDark);
 }
 
 ::-webkit-scrollbar {
