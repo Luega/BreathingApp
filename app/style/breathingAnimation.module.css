@@ -11,5 +11,6 @@
 }
 
 .yellow_circle {
+  color: var(--primaryColorLight);
   background-color: var(--alertColor);
 }
