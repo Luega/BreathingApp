@@ -16,14 +16,15 @@ const BreathingAnimation = () => {
   const breathingTl = useRef<GSAPTimeline>();
 
   let loops = 0;
+  const exhaleTime = state.exerciseName === "asymmetric" ? state.inhaleTime * 2 : state.inhaleTime;
   if (!state.expiratoryApnea && !state.inspiratoryApnea) {
-    loops = Math.round(state.exerciseTime / (state.inhaleTime * 2));
+    loops = Math.round(state.exerciseTime / (state.inhaleTime + exhaleTime));
   }
   if (!state.expiratoryApnea || !state.inspiratoryApnea) {
-    loops = Math.round(state.exerciseTime / (state.inhaleTime * 3));
+    loops = Math.round(state.exerciseTime / ((state.inhaleTime * 2) + exhaleTime));
   }
   if (state.expiratoryApnea && state.inspiratoryApnea) {
-    loops = Math.round(state.exerciseTime / (state.inhaleTime * 4));
+    loops = Math.round(state.exerciseTime / ((state.inhaleTime * 3 + exhaleTime)));
   }
 
   useLayoutEffect(() => {
@@ -37,7 +38,7 @@ const BreathingAnimation = () => {
           breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
         }
         breathingTl.current.add(() => { setBreathingPhase("OUT") })
-        breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
+        breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.exerciseName === "asymmetric" ? state.inhaleTime * 2 : state.inhaleTime, ease: "none" })
         if (state.expiratoryApnea) {
           breathingTl.current.add(() => { setBreathingPhase("APNEA") })
           breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
