@@ -6,7 +6,7 @@ import { BreathingAppContext, State } from "../utils/types";
 const BreathingAppContext = React.createContext<BreathingAppContext>({
     state: {
         isModalOpened: false,
-        exerciseName: "custom",
+        exerciseName: "none",
         inhaleTime: 4,
         inspiratoryApnea: false,
         expiratoryApnea: false,
@@ -19,7 +19,7 @@ export const BreathingAppContextProvider = (props: PropsWithChildren) => {
     const [state, setState] = useState<State>(
         {
             isModalOpened: false,
-            exerciseName: "custom",
+            exerciseName: "none",
             inhaleTime: 4,
             inspiratoryApnea: false,
             expiratoryApnea: false,

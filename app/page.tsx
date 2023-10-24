@@ -4,8 +4,6 @@ import BreathingAnimation from "./components/BreathingAnimation"
 import ExercisesMenu from "./components/ExercisesMenu"
 import Modal from "./components/Modal"
 import { Exercise } from "./utils/types"
-import classes from "./style/breathingApp.module.css"
-import { useState } from "react"
 import { useBreathingAppContext } from "./contexts/breathingAppContext"
 
 export default function BreathingApp() {
@@ -42,7 +40,7 @@ export default function BreathingApp() {
       <div className="lg:h-screen col-span-4 lg:col-span-1 overflow-auto">
         <ExercisesMenu exercises={exercises} />
       </div>
-      <div className="lg:h-screen col-span-4 row-span-2 lg:col-span-3 z-10">
+      <div className="lg:h-screen col-span-4 row-span-2 lg:col-span-3 z-10 overflow-auto">
         <BreathingAnimation />
       </div>
     </div>

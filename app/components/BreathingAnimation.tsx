@@ -2,8 +2,6 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useBreathingAppContext } from "../contexts/breathingAppContext";
 import classes from "../style/breathingAnimation.module.css"
-import { State } from "../utils/types";
-
 const BreathingAnimation = () => {
   const { state, setState } = useBreathingAppContext();
   const [breathingPhase, setBreathingPhase] = useState<string>("Click to start");
@@ -52,21 +50,26 @@ const BreathingAnimation = () => {
 
   const startHandler = () => {
     if (loops <= 0) {
-      setState((prevState: State) => {
-        return {
-          ...prevState,
-          isModalOpened: true
-        }
-      });
+      setTimeout(() => {
+        setBreathingPhase("Click to start")
+      }, 2000);
+      setBreathingPhase("Select an exercise")
       return
     }
     setStartAnimation(!startAnimation);
-    setBreathingPhase("Click to start")
+    setBreathingPhase("Click to start");
   }
 
   return (
     <div ref={gsapContainer}>
-      <div className="mb-5 md:mb-10 lg:my-10 text-6xl md:text-7xl lg:text-8xl flex justify-center items-center">10:00</div>
+      <div className="mb-5 md:mb-10 lg:my-10 px-3 grid grid-cols-2">
+        <div className="flex flex-col justify-self-center">
+          <div>Type: <span className={`${classes.alert_text}`}>{state.exerciseName.toUpperCase()}</span></div>
+          <div>Inhale time: <span className={`${classes.alert_text}`}>{state.inhaleTime}sec.</span></div>
+          <div>Apnea: <span className={`${classes.alert_text}`}>{state.inspiratoryApnea && "inspiratory"} {state.expiratoryApnea && "expiratory"} {!state.inspiratoryApnea && !state.expiratoryApnea && "no"}</span></div>
+        </div>
+        <div className="text-4xl md:text-6xl lg:text-7xl justify-self-center">10:00</div>
+      </div>
       <div className="flex justify-center items-center">
         <div className={`${classes.white_circle} w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] lg:w-[600px] lg:h-[600px] 2xl:w-[750px] 2xl:h-[750px]`}>
           <div className={`${classes.white_circle} w-[250px] h-[250px] sm:w-[375px] sm:h-[375px] lg:w-[500px] lg:h-[500px] 2xl:w-[625px] 2xl:h-[625px]`}>

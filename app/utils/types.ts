@@ -23,4 +23,4 @@ export type ExerciseName =
   | "asymmetric"
   | "triangular"
   | "box"
-  | "custom";
+  | "none";
