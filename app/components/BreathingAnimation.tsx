@@ -7,7 +7,7 @@ import { getLoops } from "../utils/functions";
 
 
 const BreathingAnimation = () => {
-  const { state, setState, startAnimation, setStartAnimation } = useBreathingAppContext();
+  const { state, setState } = useBreathingAppContext();
   const [breathingPhase, setBreathingPhase] = useState<string>("Click to start");
 
   const gsapContainer = useRef(null);
@@ -16,41 +16,43 @@ const BreathingAnimation = () => {
   const loops = getLoops(state);
 
   useLayoutEffect(() => {
-    if (startAnimation) {
+    if (state.isAnimationStarted) {
       const ctx = gsap.context(() => {
         breathingTl.current = gsap.timeline({
           repeat: loops > 0 ? loops - 1 : 0, onComplete: () => {
-            setBreathingPhase("FINISHED");
-            setStartAnimation(false);
+            setBreathingPhase("COMPLETED");
             setState((prevState) => {
               return {
                 ...prevState,
-                exerciseName: "none",
+                isAnimationStarted: false,
                 exerciseTime: 0,
-                inhaleTime: 4,
-                inspiratoryApnea: false,
-                expiratoryApnea: false
+                inhaleTime: 0,
+                name: "",
+                inhale: 0,
+                exhale: 0,
+                inspiratoryApnea: 0,
+                expiratoryApnea: 0,
               }
             });
           }
         });
         breathingTl.current.add(() => { setBreathingPhase("IN") })
-        breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
-        if (state.inspiratoryApnea) {
+        breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime * state.inhale, ease: "none" })
+        if (state.inspiratoryApnea !== 0) {
           breathingTl.current.add(() => { setBreathingPhase("APNEA") })
-          breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
+          breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime * state.inspiratoryApnea, ease: "none" })
         }
         breathingTl.current.add(() => { setBreathingPhase("OUT") })
-        breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.exerciseName === "asymmetric" ? state.inhaleTime * 2 : state.inhaleTime, ease: "none" })
-        if (state.expiratoryApnea) {
+        breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime * state.exhale, ease: "none" })
+        if (state.expiratoryApnea !== 0) {
           breathingTl.current.add(() => { setBreathingPhase("APNEA") })
-          breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
+          breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime * state.expiratoryApnea, ease: "none" })
         }
       }, gsapContainer);
 
       return () => ctx.revert();
     }
-  }, [startAnimation]);
+  }, [loops, setState, state.exhale, state.expiratoryApnea, state.inhale, state.inhaleTime, state.inspiratoryApnea, state.isAnimationStarted]);
 
 
   const startHandler = () => {
@@ -64,7 +66,12 @@ const BreathingAnimation = () => {
       setBreathingPhase("Select an exercise");
       return
     }
-    setStartAnimation(!startAnimation);
+    setState((prevState) => {
+      return {
+        ...prevState,
+        isAnimationStarted: !prevState.isAnimationStarted
+      }
+    });
     setBreathingPhase("Click to start");
   }
 
@@ -74,11 +81,11 @@ const BreathingAnimation = () => {
     }}>
       <div className="mb-5 md:mb-10 lg:my-10 px-3 grid grid-cols-2">
         <div className="flex flex-col justify-self-center">
-          <div>Type: <span className={`${classes.alert_text}`}>{state.exerciseName.toUpperCase()}</span></div>
+          <div>Type: <span className={`${classes.alert_text}`}>{state.name === "" ? "None" : state.name.toUpperCase()}</span></div>
           <div>Inhale time: <span className={`${classes.alert_text}`}>{state.inhaleTime}sec.</span></div>
-          <div>Apnea: <span className={`${classes.alert_text}`}>{state.inspiratoryApnea && "inspiratory"} {state.expiratoryApnea && "expiratory"} {!state.inspiratoryApnea && !state.expiratoryApnea && "no"}</span></div>
+          <div>Apnea: <span className={`${classes.alert_text}`}>{state.inspiratoryApnea === 0 && state.expiratoryApnea === 0 && "None"} {state.inspiratoryApnea !== 0 && "Inspiratory"} {state.expiratoryApnea !== 0 && "Expiratory"}</span></div>
         </div>
-        <Timer startAnimation={startAnimation} />
+        <Timer startAnimation={state.isAnimationStarted} />
       </div>
       <div className="flex justify-center items-center">
         <div className={`${classes.white_circle} w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] lg:w-[600px] lg:h-[600px] 2xl:w-[750px] 2xl:h-[750px]`}>
