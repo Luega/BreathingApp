@@ -1,51 +1,20 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useBreathingAppContext } from "../contexts/breathingAppContext";
 import classes from "../style/breathingAnimation.module.css"
+import Timer from "./Timer";
+import { getLoops } from "../utils/functions";
+
+
 const BreathingAnimation = () => {
   const { state, setState } = useBreathingAppContext();
   const [breathingPhase, setBreathingPhase] = useState<string>("Click to start");
   const [startAnimation, setStartAnimation] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (startAnimation) {
-      if (state.exerciseTime <= 0) {
-        return
-      }
-      const interval = setInterval(() => {
-        setState((prevState) => {
-          return {
-            ...prevState,
-            exerciseTime: state.exerciseTime - 1
-          }
-        })
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
-
-  }, [state.exerciseTime, startAnimation]);
-
   const gsapContainer = useRef(null);
   const breathingTl = useRef<GSAPTimeline>();
 
-  const getLoops = (): number => {
-    let loops = 0;
-    const exhaleTime = state.exerciseName === "asymmetric" ? state.inhaleTime * 2 : state.inhaleTime;
-    if (!state.expiratoryApnea && !state.inspiratoryApnea) {
-      loops = Math.round(state.exerciseTime / (state.inhaleTime + exhaleTime));
-    }
-    else if (!state.expiratoryApnea || !state.inspiratoryApnea) {
-      loops = Math.round(state.exerciseTime / ((state.inhaleTime * 2) + exhaleTime));
-    }
-    else if (state.expiratoryApnea && state.inspiratoryApnea) {
-      loops = Math.round(state.exerciseTime / ((state.inhaleTime * 3 + exhaleTime)));
-    }
-    console.log(loops);
-
-    return loops;
-  }
-  const loops = getLoops();
+  const loops = getLoops(state);
 
   useLayoutEffect(() => {
     if (startAnimation) {
@@ -86,12 +55,16 @@ const BreathingAnimation = () => {
     }
   }, [startAnimation]);
 
+
   const startHandler = () => {
     if (loops <= 0) {
+      if (breathingPhase === "Select an exercise") {
+        return
+      }
       setTimeout(() => {
-        setBreathingPhase("Click to start")
+        setBreathingPhase("Click to start");
       }, 2000);
-      setBreathingPhase("Select an exercise")
+      setBreathingPhase("Select an exercise");
       return
     }
     setStartAnimation(!startAnimation);
@@ -106,7 +79,7 @@ const BreathingAnimation = () => {
           <div>Inhale time: <span className={`${classes.alert_text}`}>{state.inhaleTime}sec.</span></div>
           <div>Apnea: <span className={`${classes.alert_text}`}>{state.inspiratoryApnea && "inspiratory"} {state.expiratoryApnea && "expiratory"} {!state.inspiratoryApnea && !state.expiratoryApnea && "no"}</span></div>
         </div>
-        <div className="text-4xl md:text-6xl lg:text-7xl justify-self-center">{state.exerciseTime}<span className="text-lg">sec.</span></div>
+        <Timer startAnimation={startAnimation} />
       </div>
       <div className="flex justify-center items-center">
         <div className={`${classes.white_circle} w-[300px] h-[300px] sm:w-[450px] sm:h-[450px] lg:w-[600px] lg:h-[600px] 2xl:w-[750px] 2xl:h-[750px]`}>
