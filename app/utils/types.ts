@@ -20,6 +20,7 @@ export type State = {
 };
 
 export type BreathingAppContext = {
+  exercises: Exercise[];
   state: State;
   setState: React.Dispatch<React.SetStateAction<State>>;
 };

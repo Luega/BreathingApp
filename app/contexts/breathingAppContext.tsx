@@ -1,37 +1,44 @@
 'use client'
 
 import React, { PropsWithChildren, useContext, useState } from "react";
+import db from "../DB/db";
 import { BreathingAppContext, State } from "../utils/types";
 
 const BreathingAppContext = React.createContext<BreathingAppContext>({
+    exercises: [],
     state: {
         isModalOpened: false,
-        exerciseName: "none",
-        inhaleTime: 4,
-        inspiratoryApnea: false,
-        expiratoryApnea: false,
+        isAnimationStarted: false,
         exerciseTime: 0,
+        inhaleTime: 0,
+        name: "",
+        inhale: 0,
+        exhale: 0,
+        inspiratoryApnea: 0,
+        expiratoryApnea: 0,
     },
     setState: () => { },
-    startAnimation: false,
-    setStartAnimation: () => { }
 });
 
 export const BreathingAppContextProvider = (props: PropsWithChildren) => {
-    const [startAnimation, setStartAnimation] = useState<boolean>(false);
     const [state, setState] = useState<State>(
         {
             isModalOpened: false,
-            exerciseName: "none",
-            inhaleTime: 4,
-            inspiratoryApnea: false,
-            expiratoryApnea: false,
+            isAnimationStarted: false,
             exerciseTime: 0,
+            inhaleTime: 0,
+            name: "",
+            inhale: 0,
+            exhale: 0,
+            inspiratoryApnea: 0,
+            expiratoryApnea: 0,
         }
     );
 
+    const exercises = db;
+
     return (
-        <BreathingAppContext.Provider value={{ state, setState, startAnimation, setStartAnimation }}>
+        <BreathingAppContext.Provider value={{ exercises, state, setState }}>
             {props.children}
         </BreathingAppContext.Provider>
     );
