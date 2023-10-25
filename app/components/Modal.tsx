@@ -101,7 +101,10 @@ const Modal = () => {
                 <button className={`${classes.closeBtn} absolute top-3 right-3`} onClick={() => closeModalHandler()}>X</button>
                 <div className='col-span-3 lg:col-span-1 flex flex-col justify-center text-center'>
                     <p className='mb-2'>Inhale time in seconds</p>
-                    <input onChange={() => inhaleTimeInputHandler()} ref={inhaleTimeInput} className={`${classes.inhaleTime} shadow-xl`} type="number" name='number' value={state.inhaleTime} />
+                    <div className={`${classes.inhaleTime} flex flex-col justify-center shadow-xl`}>
+                        <p>{state.inhaleTime}</p>
+                        <input onChange={() => inhaleTimeInputHandler()} ref={inhaleTimeInput} className='mx-4' type="range" name='inhaleTime' value={state.inhaleTime} min={1} max={10} />
+                    </div>
                 </div>
                 <div className='mt-4 lg:mt-0 col-span-3 lg:col-span-2 flex flex-col justify-center text-center'>
                     <p className='mb-2'>Apnea</p>

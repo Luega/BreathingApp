@@ -41,6 +41,8 @@ const BreathingAnimation = () => {
     else if (state.expiratoryApnea && state.inspiratoryApnea) {
       loops = Math.round(state.exerciseTime / ((state.inhaleTime * 3 + exhaleTime)));
     }
+    console.log(loops);
+
     return loops;
   }
   const loops = getLoops();
@@ -48,7 +50,22 @@ const BreathingAnimation = () => {
   useLayoutEffect(() => {
     if (startAnimation) {
       const ctx = gsap.context(() => {
-        breathingTl.current = gsap.timeline({ repeat: loops > 0 ? loops - 1 : 0, onComplete: () => { setBreathingPhase("FINISHED"), setStartAnimation(false) } });
+        breathingTl.current = gsap.timeline({
+          repeat: loops > 0 ? loops - 1 : 0, onComplete: () => {
+            setBreathingPhase("FINISHED");
+            setStartAnimation(false);
+            setState((prevState) => {
+              return {
+                ...prevState,
+                exerciseName: "none",
+                exerciseTime: 0,
+                inhaleTime: 4,
+                inspiratoryApnea: false,
+                expiratoryApnea: false
+              }
+            });
+          }
+        });
         breathingTl.current.add(() => { setBreathingPhase("IN") })
         breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
         if (state.inspiratoryApnea) {
@@ -61,6 +78,8 @@ const BreathingAnimation = () => {
           breathingTl.current.add(() => { setBreathingPhase("APNEA") })
           breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
         }
+        breathingTl.current.add(() => { console.log("Fine Ciclo") })
+
       }, gsapContainer);
 
       return () => ctx.revert();
