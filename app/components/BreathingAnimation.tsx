@@ -7,9 +7,8 @@ import { getLoops } from "../utils/functions";
 
 
 const BreathingAnimation = () => {
-  const { state, setState } = useBreathingAppContext();
+  const { state, setState, startAnimation, setStartAnimation } = useBreathingAppContext();
   const [breathingPhase, setBreathingPhase] = useState<string>("Click to start");
-  const [startAnimation, setStartAnimation] = useState<boolean>(false);
 
   const gsapContainer = useRef(null);
   const breathingTl = useRef<GSAPTimeline>();
@@ -47,8 +46,6 @@ const BreathingAnimation = () => {
           breathingTl.current.add(() => { setBreathingPhase("APNEA") })
           breathingTl.current.to("#yellow_circle", { scale: 1, duration: state.inhaleTime, ease: "none" })
         }
-        breathingTl.current.add(() => { console.log("Fine Ciclo") })
-
       }, gsapContainer);
 
       return () => ctx.revert();
@@ -72,7 +69,9 @@ const BreathingAnimation = () => {
   }
 
   return (
-    <div ref={gsapContainer}>
+    <div ref={gsapContainer} onBlur={(e) => {
+      console.log(e.currentTarget);
+    }}>
       <div className="mb-5 md:mb-10 lg:my-10 px-3 grid grid-cols-2">
         <div className="flex flex-col justify-self-center">
           <div>Type: <span className={`${classes.alert_text}`}>{state.exerciseName.toUpperCase()}</span></div>

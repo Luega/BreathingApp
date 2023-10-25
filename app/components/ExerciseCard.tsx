@@ -9,9 +9,10 @@ type Props = {
 
 const ExerciseCard = ({ exercise }: Props) => {
   const { title, details, tags } = exercise;
-  const { state, setState } = useBreathingAppContext();
+  const { setState, setStartAnimation } = useBreathingAppContext();
 
   const openModalHandler = (title: string) => {
+    setStartAnimation(false);
     setState((prevState: State) => {
       return {
         ...prevState,

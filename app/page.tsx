@@ -9,29 +9,6 @@ import { useBreathingAppContext } from "./contexts/breathingAppContext"
 export default function BreathingApp() {
   const { state, setState } = useBreathingAppContext();
 
-  const exercises: Exercise[] = [
-    {
-      title: "Symmetric breathing",
-      details: ["Inspiration = Expiration", "No Apnea"],
-      tags: ["Awareness"],
-    },
-    {
-      title: "Asymmetric breathing",
-      details: ["Inspiration < Expiration", "No apnea"],
-      tags: ["Relax"],
-    },
-    {
-      title: "Triangular breathing",
-      details: ["Inspiration = Expiration", "Expiratory apnea"],
-      tags: ["Relax", "Health"],
-    },
-    {
-      title: "Box breathing",
-      details: ["Inspiration = Expiration", "Expiratory apnea", "Inspiratory apnea"],
-      tags: ["Focus", "Relax"],
-    }
-  ]
-
   return (
     <div className="w-full h-screen grid grid-rows-3 lg:grid-cols-4">
       {

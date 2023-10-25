@@ -12,10 +12,13 @@ const BreathingAppContext = React.createContext<BreathingAppContext>({
         expiratoryApnea: false,
         exerciseTime: 0,
     },
-    setState: () => { }
+    setState: () => { },
+    startAnimation: false,
+    setStartAnimation: () => { }
 });
 
 export const BreathingAppContextProvider = (props: PropsWithChildren) => {
+    const [startAnimation, setStartAnimation] = useState<boolean>(false);
     const [state, setState] = useState<State>(
         {
             isModalOpened: false,
@@ -28,7 +31,7 @@ export const BreathingAppContextProvider = (props: PropsWithChildren) => {
     );
 
     return (
-        <BreathingAppContext.Provider value={{ state, setState }}>
+        <BreathingAppContext.Provider value={{ state, setState, startAnimation, setStartAnimation }}>
             {props.children}
         </BreathingAppContext.Provider>
     );
