@@ -17,7 +17,7 @@ export default function BreathingApp() {
         <ExercisesMenu />
       </div>
       <div className="lg:h-screen col-span-4 row-span-2 lg:col-span-3 z-10 overflow-auto">
-        <BreathingAnimation />
+        {/* <BreathingAnimation /> */}
       </div>
     </div>
   )

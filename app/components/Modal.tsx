@@ -7,61 +7,18 @@ const Modal = () => {
     const { state, setState } = useBreathingAppContext();
     const inhaleTimeInput = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        switch (state.exerciseName) {
-            case "symmetric":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: false,
-                    }
-                });
-                break;
-            case "asymmetric":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: false,
-                    }
-                });
-                break;
-            case "triangular":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: true,
-                    }
-                });
-                break;
-            case "box":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: true,
-                        expiratoryApnea: true,
-                    }
-                });
-                break;
-            default:
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: false,
-                    }
-                });
-                break;
-        }
-    }, []);
-
     const closeModalHandler = () => {
         setState((prevState) => {
             return {
                 ...prevState,
-                isModalOpened: false
+                isModalOpened: false,
+                exerciseTime: 0,
+                inhaleTime: 0,
+                name: "",
+                inhale: 0,
+                exhale: 0,
+                inspiratoryApnea: 0,
+                expiratoryApnea: 0,
             }
         });
     }
@@ -81,7 +38,7 @@ const Modal = () => {
         setState((prevState) => {
             return {
                 ...prevState,
-                expiratoryApnea: !prevState.expiratoryApnea
+                expiratoryApnea: prevState.expiratoryApnea === 0 ? 1 : 0
             }
         });
     }
@@ -90,7 +47,16 @@ const Modal = () => {
         setState((prevState) => {
             return {
                 ...prevState,
-                inspiratoryApnea: !prevState.inspiratoryApnea
+                inspiratoryApnea: prevState.inspiratoryApnea === 0 ? 1 : 0
+            }
+        });
+    }
+
+    const setExerciseHandler = () => {
+        setState((prevState) => {
+            return {
+                ...prevState,
+                isModalOpened: false,
             }
         });
     }
@@ -124,7 +90,7 @@ const Modal = () => {
                         <TimeBadge emoji="&#129321;" time="30min." />
                     </div>
                 </div>
-                <button className={`${classes.closeBtn} w-[30%] mt-8 mx-auto col-span-3`} onClick={() => closeModalHandler()}>Done</button>
+                <button className={`${classes.closeBtn} w-[30%] mt-8 mx-auto col-span-3`} onClick={() => setExerciseHandler()}>Done</button>
             </div>
         </div>
     )
