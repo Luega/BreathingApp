@@ -1,12 +1,10 @@
-import { Exercise } from "../utils/types";
-import ExerciseCard from "./ExerciseCard";
+import { useBreathingAppContext } from "../contexts/breathingAppContext";
 import classes from '../style/exercisesMenu.module.css'
+import ExerciseCard from "./ExerciseCard";
 
-type Props = {
-  exercises: Exercise[]
-}
+const ExercisesMenu = () => {
+  const { exercises } = useBreathingAppContext();
 
-const ExercisesMenu = ({ exercises }: Props) => {
   return (
     <>
       <h1 className={`${classes.title} hidden lg:block p-10 text-3xl md:text-4xl lg:text-5xl text-center sticky top-0 z-10`}>Start session</h1>
