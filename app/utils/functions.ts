@@ -13,7 +13,7 @@ export const getLoops = (state: State): number => {
 
   return Number.isNaN(numberOfLoops) || numberOfLoops <= 0
     ? 0
-    : state.exerciseTime / loopTime;
+    : Math.ceil(numberOfLoops);
 };
 
 const getLoopTime = (

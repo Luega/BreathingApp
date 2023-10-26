@@ -21,13 +21,12 @@ const BreathingAnimation = () => {
         breathingTl.current = gsap.timeline({
           repeat: loops > 0 ? loops - 1 : 0, onComplete: () => {
             setBreathingPhase("COMPLETED");
-            console.log("completed");
             setState((prevState) => {
               return {
                 ...prevState,
                 isAnimationStarted: false,
                 exerciseTime: 0,
-                inhaleTime: 0,
+                inhaleTime: 3,
                 name: "",
                 inhale: 0,
                 exhale: 0,
@@ -82,10 +81,10 @@ const BreathingAnimation = () => {
       console.log(e.currentTarget);
     }}>
       <div className="mb-5 md:mb-10 lg:my-10 px-3 grid grid-cols-2">
-        <div className="flex flex-col justify-self-center">
-          <div>Type: <span className={`${classes.alert_text}`}>{state.name === "" ? "None" : state.name.toUpperCase()}</span></div>
-          <div>Inhale time: <span className={`${classes.alert_text}`}>{state.inhaleTime}sec.</span></div>
-          <div>Apnea: <span className={`${classes.alert_text}`}>{state.inspiratoryApnea === 0 && state.expiratoryApnea === 0 && "None"} {state.inspiratoryApnea !== 0 && "Inspiratory"} {state.expiratoryApnea !== 0 && "Expiratory"}</span></div>
+        <div className="flex flex-col justify-self-center text-sm md:text-lg">
+          <div>Type: <span className={`${classes.alert_text} italic`}>{state.name === "" ? "None" : state.name}</span></div>
+          <div>Inhale time: <span className={`${classes.alert_text} italic`}>{state.inhaleTime}sec.</span></div>
+          <div>Apnea: <span className={`${classes.alert_text} italic`}>{state.inspiratoryApnea === 0 && state.expiratoryApnea === 0 && "None"} {state.inspiratoryApnea !== 0 && "Inspiratory"} {state.expiratoryApnea !== 0 && "Expiratory"}</span></div>
         </div>
         <Timer startAnimation={state.isAnimationStarted} />
       </div>
