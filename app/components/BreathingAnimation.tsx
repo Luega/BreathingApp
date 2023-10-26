@@ -21,6 +21,7 @@ const BreathingAnimation = () => {
         breathingTl.current = gsap.timeline({
           repeat: loops > 0 ? loops - 1 : 0, onComplete: () => {
             setBreathingPhase("COMPLETED");
+            console.log("completed");
             setState((prevState) => {
               return {
                 ...prevState,
@@ -52,7 +53,8 @@ const BreathingAnimation = () => {
 
       return () => ctx.revert();
     }
-  }, [loops, setState, state.exhale, state.expiratoryApnea, state.inhale, state.inhaleTime, state.inspiratoryApnea, state.isAnimationStarted]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.isAnimationStarted]);
 
 
   const startHandler = () => {

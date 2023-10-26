@@ -13,7 +13,7 @@ const Modal = () => {
                 ...prevState,
                 isModalOpened: false,
                 exerciseTime: 0,
-                inhaleTime: 0,
+                inhaleTime: 3,
                 name: "",
                 inhale: 0,
                 exhale: 0,
@@ -24,7 +24,7 @@ const Modal = () => {
     }
 
     const inhaleTimeInputHandler = () => {
-        const inhaleTime = inhaleTimeInput.current ? Number(inhaleTimeInput.current.value) : 4;
+        const inhaleTime = inhaleTimeInput.current ? Number(inhaleTimeInput.current.value) : 3;
 
         setState((prevState) => {
             return {
