@@ -82,12 +82,12 @@ const Modal = () => {
                 <div className='mt-4 col-span-3 flex flex-col justify-center text-center'>
                     <p className='mb-2'>Session time</p>
                     <div className='flex justify-center gap-3 flex-wrap'>
-                        <TimeBadge emoji="&#128522;" time="3min." />
-                        <TimeBadge emoji="&#128578;" time="5min." />
-                        <TimeBadge emoji="&#128513;" time="10min." />
-                        <TimeBadge emoji="&#128512;" time="15min." />
-                        <TimeBadge emoji="&#128526;" time="20min." />
-                        <TimeBadge emoji="&#129321;" time="30min." />
+                        <TimeBadge emoji="&#128522;" time={3} />
+                        <TimeBadge emoji="&#128578;" time={5} />
+                        <TimeBadge emoji="&#128513;" time={10} />
+                        <TimeBadge emoji="&#128512;" time={15} />
+                        <TimeBadge emoji="&#128526;" time={20} />
+                        <TimeBadge emoji="&#129321;" time={30} />
                     </div>
                 </div>
                 <button className={`${classes.closeBtn} w-[30%] mt-8 mx-auto col-span-3`} onClick={() => setExerciseHandler()}>Done</button>
