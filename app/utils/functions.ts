@@ -9,7 +9,11 @@ export const getLoops = (state: State): number => {
     state.expiratoryApnea
   );
 
-  return state.exerciseTime / loopTime;
+  const numberOfLoops = state.exerciseTime / loopTime;
+
+  return Number.isNaN(numberOfLoops) || numberOfLoops <= 0
+    ? 0
+    : state.exerciseTime / loopTime;
 };
 
 const getLoopTime = (
