@@ -28,7 +28,6 @@ const BreathingAnimation = () => {
                 exerciseTime: 0,
                 inhaleTime: 3,
                 name: "",
-                inhale: 0,
                 exhale: 0,
                 inspiratoryApnea: 0,
                 expiratoryApnea: 0,
@@ -37,7 +36,7 @@ const BreathingAnimation = () => {
           }
         });
         breathingTl.current.add(() => { setBreathingPhase("IN") })
-        breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime * state.inhale, ease: "none" })
+        breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime, ease: "none" })
         if (state.inspiratoryApnea !== 0) {
           breathingTl.current.add(() => { setBreathingPhase("APNEA") })
           breathingTl.current.to("#yellow_circle", { scale: 3, duration: state.inhaleTime * state.inspiratoryApnea, ease: "none" })

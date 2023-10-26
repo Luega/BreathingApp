@@ -15,7 +15,6 @@ const Modal = () => {
                 exerciseTime: 0,
                 inhaleTime: 3,
                 name: "",
-                inhale: 0,
                 exhale: 0,
                 inspiratoryApnea: 0,
                 expiratoryApnea: 0,

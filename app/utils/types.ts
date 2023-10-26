@@ -1,6 +1,5 @@
 export type Exercise = {
   name: string;
-  inhale: number;
   exhale: number;
   inspiratoryApnea: number;
   expiratoryApnea: number;
@@ -13,7 +12,6 @@ export type State = {
   exerciseTime: number;
   inhaleTime: number;
   name: string;
-  inhale: number;
   exhale: number;
   inspiratoryApnea: number;
   expiratoryApnea: number;
