@@ -3,7 +3,6 @@ import { Exercise } from "../utils/types";
 const db: Exercise[] = [
   {
     name: "Symmetric breathing",
-    inhale: 1,
     exhale: 1,
     inspiratoryApnea: 0,
     expiratoryApnea: 0,
@@ -11,7 +10,6 @@ const db: Exercise[] = [
   },
   {
     name: "Asymmetric breathing",
-    inhale: 1,
     exhale: 2,
     inspiratoryApnea: 0,
     expiratoryApnea: 0,
@@ -19,7 +17,6 @@ const db: Exercise[] = [
   },
   {
     name: "Triangular breathing",
-    inhale: 1,
     exhale: 1,
     inspiratoryApnea: 0,
     expiratoryApnea: 1,
@@ -27,7 +24,6 @@ const db: Exercise[] = [
   },
   {
     name: "Box breathing",
-    inhale: 1,
     exhale: 1,
     inspiratoryApnea: 1,
     expiratoryApnea: 1,
