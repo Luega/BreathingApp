@@ -1,15 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-import connectToMongo from "@/app/DB/mongoDB";
-import Exercise from "@/app/DB/models/Exercise";
+import { getAllExercises } from "@/app/mongoBD/controllers/ExerciseController";
+import { Exercise } from "@/app/utils/types";
 
-export async function GET(_req: NextRequest, _res: NextResponse) {
+export async function GET(_req: Request, _res: Response) {
   try {
-    await connectToMongo();
-    const exercises = await Exercise.find();
-    return new NextResponse(JSON.stringify(exercises), { status: 200 });
-  } catch (error) {
-    return new NextResponse("Error in fetching exercises " + error, {
-      status: 500,
-    });
+    const exercises: Exercise[] = await getAllExercises();
+    return new Response(JSON.stringify(exercises), { status: 200 });
+  } catch (error: any) {
+    return new Response(error, { status: 500 });
   }
 }
