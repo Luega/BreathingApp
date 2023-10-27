@@ -37,7 +37,7 @@ export const BreathingAppContextProvider = (props: PropsWithChildren) => {
         fetch(process.env.NEXT_PUBLIC_API_URL!)
             .then((response) => response.json())
             .then((result) => {
-                setExercises(result); console.log(result);
+                setExercises(result);
             })
             .catch((error) => console.error(error));
     }, []);

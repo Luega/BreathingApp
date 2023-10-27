@@ -1,0 +1,19 @@
+.card {
+  width: 300px;
+  height: 200px;
+  min-width: 250px;
+  min-height: 125px;
+  position: relative;
+  border-radius: var(--borderRadiusRegular);
+  overflow: hidden;
+  scroll-snap-align: center;
+  background: linear-gradient(110deg, #261462 10%, #2d1875 30%, #261462 60%);
+  background-size: 200% 100%;
+  animation: 0.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
