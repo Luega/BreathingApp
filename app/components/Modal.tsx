@@ -7,67 +7,23 @@ const Modal = () => {
     const { state, setState } = useBreathingAppContext();
     const inhaleTimeInput = useRef<HTMLInputElement>(null);
 
-    useEffect(() => {
-        switch (state.exerciseName) {
-            case "symmetric":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: false,
-                    }
-                });
-                break;
-            case "asymmetric":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: false,
-                    }
-                });
-                break;
-            case "triangular":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: true,
-                    }
-                });
-                break;
-            case "box":
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: true,
-                        expiratoryApnea: true,
-                    }
-                });
-                break;
-            default:
-                setState((prevState) => {
-                    return {
-                        ...prevState,
-                        inspiratoryApnea: false,
-                        expiratoryApnea: false,
-                    }
-                });
-                break;
-        }
-    }, []);
-
     const closeModalHandler = () => {
         setState((prevState) => {
             return {
                 ...prevState,
-                isModalOpened: false
+                isModalOpened: false,
+                exerciseTime: 0,
+                inhaleTime: 3,
+                name: "",
+                exhale: 0,
+                inspiratoryApnea: 0,
+                expiratoryApnea: 0,
             }
         });
     }
 
     const inhaleTimeInputHandler = () => {
-        const inhaleTime = inhaleTimeInput.current ? Number(inhaleTimeInput.current.value) : 4;
+        const inhaleTime = inhaleTimeInput.current ? Number(inhaleTimeInput.current.value) : 3;
 
         setState((prevState) => {
             return {
@@ -81,7 +37,7 @@ const Modal = () => {
         setState((prevState) => {
             return {
                 ...prevState,
-                expiratoryApnea: !prevState.expiratoryApnea
+                expiratoryApnea: prevState.expiratoryApnea === 0 ? 1 : 0
             }
         });
     }
@@ -90,7 +46,16 @@ const Modal = () => {
         setState((prevState) => {
             return {
                 ...prevState,
-                inspiratoryApnea: !prevState.inspiratoryApnea
+                inspiratoryApnea: prevState.inspiratoryApnea === 0 ? 1 : 0
+            }
+        });
+    }
+
+    const setExerciseHandler = () => {
+        setState((prevState) => {
+            return {
+                ...prevState,
+                isModalOpened: false,
             }
         });
     }
@@ -116,15 +81,15 @@ const Modal = () => {
                 <div className='mt-4 col-span-3 flex flex-col justify-center text-center'>
                     <p className='mb-2'>Session time</p>
                     <div className='flex justify-center gap-3 flex-wrap'>
-                        <TimeBadge emoji="&#128522;" time="3min." />
-                        <TimeBadge emoji="&#128578;" time="5min." />
-                        <TimeBadge emoji="&#128513;" time="10min." />
-                        <TimeBadge emoji="&#128512;" time="15min." />
-                        <TimeBadge emoji="&#128526;" time="20min." />
-                        <TimeBadge emoji="&#129321;" time="30min." />
+                        <TimeBadge emoji="&#128522;" time={3} />
+                        <TimeBadge emoji="&#128578;" time={5} />
+                        <TimeBadge emoji="&#128513;" time={10} />
+                        <TimeBadge emoji="&#128512;" time={15} />
+                        <TimeBadge emoji="&#128526;" time={20} />
+                        <TimeBadge emoji="&#129321;" time={30} />
                     </div>
                 </div>
-                <button className={`${classes.closeBtn} w-[30%] mt-8 mx-auto col-span-3`} onClick={() => closeModalHandler()}>Done</button>
+                <button className={`${classes.closeBtn} w-[30%] mt-8 mx-auto col-span-3`} onClick={() => setExerciseHandler()}>Done</button>
             </div>
         </div>
     )

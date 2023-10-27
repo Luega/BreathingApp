@@ -1,37 +1,42 @@
-import { Exercise, ExerciseName, State } from "../utils/types"
-import Tag from "./Tag";
-import classes from '../style/exerciseCard.module.css'
 import { useBreathingAppContext } from "../contexts/breathingAppContext";
+import { Exercise, State } from "../utils/types"
+import classes from '../style/exerciseCard.module.css'
+import Tag from "./Tag";
+import { useEffect } from "react";
 
 type Props = {
   exercise: Exercise
 }
 
 const ExerciseCard = ({ exercise }: Props) => {
-  const { title, details, tags } = exercise;
-  const { state, setState } = useBreathingAppContext();
+  const { setState } = useBreathingAppContext();
 
-  const openModalHandler = (title: string) => {
+  const openModalHandler = () => {
     setState((prevState: State) => {
       return {
         ...prevState,
-        exerciseName: title as ExerciseName,
-        isModalOpened: true
+        isModalOpened: true,
+        isAnimationStarted: false,
+        name: exercise.name,
+        exhale: exercise.exhale,
+        inspiratoryApnea: exercise.inspiratoryApnea,
+        expiratoryApnea: exercise.expiratoryApnea
       }
     });
   }
 
   return (
-    <div className={`${classes.card} p-4 shadow-xl cursor-pointer`} onClick={() => openModalHandler(title.split(" ")[0].toLowerCase())}>
-      <h1 className="text-xl uppercase">{title}</h1>
+    <div onClick={() => openModalHandler()} className={`${classes.card} p-4 shadow-xl cursor-pointer`}>
+      <h1 className="text-xl uppercase">{exercise.name}</h1>
       <div className="my-4 font-thin">
-        {
-          details.map((detail, index) => <p key={index}>{detail}</p>)
-        }
+        <p>{exercise.exhale === 1 && "Inhale = Exhale"}</p>
+        <p>{exercise.exhale > 1 && "Inhale < Exhale"}</p>
+        <p>{exercise.exhale < 1 && "Inhale > Exhale"}</p>
+        <p>Apnea: {exercise.inspiratoryApnea === 0 && exercise.expiratoryApnea === 0 && "None"} {exercise.inspiratoryApnea !== 0 && "Inspiratory"} {exercise.expiratoryApnea !== 0 && "Expiratory"}</p>
       </div>
       <div className="flex gap-2 absolute bottom-3 left-3">
         {
-          tags.map((tag, index) => <Tag key={index} name={tag} />)
+          exercise.tags.map((tag, index) => <Tag key={index} name={tag} />)
         }
       </div>
     </div>

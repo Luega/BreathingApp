@@ -3,34 +3,10 @@
 import BreathingAnimation from "./components/BreathingAnimation"
 import ExercisesMenu from "./components/ExercisesMenu"
 import Modal from "./components/Modal"
-import { Exercise } from "./utils/types"
 import { useBreathingAppContext } from "./contexts/breathingAppContext"
 
 export default function BreathingApp() {
-  const { state, setState } = useBreathingAppContext();
-
-  const exercises: Exercise[] = [
-    {
-      title: "Symmetric breathing",
-      details: ["Inspiration = Expiration", "No Apnea"],
-      tags: ["Awareness"],
-    },
-    {
-      title: "Asymmetric breathing",
-      details: ["Inspiration < Expiration", "No apnea"],
-      tags: ["Relax"],
-    },
-    {
-      title: "Triangular breathing",
-      details: ["Inspiration = Expiration", "Expiratory apnea"],
-      tags: ["Relax", "Health"],
-    },
-    {
-      title: "Box breathing",
-      details: ["Inspiration = Expiration", "Expiratory apnea", "Inspiratory apnea"],
-      tags: ["Focus", "Relax"],
-    }
-  ]
+  const { state } = useBreathingAppContext();
 
   return (
     <div className="w-full h-screen grid grid-rows-3 lg:grid-cols-4">
@@ -38,7 +14,7 @@ export default function BreathingApp() {
         state.isModalOpened && <Modal />
       }
       <div className="lg:h-screen col-span-4 lg:col-span-1 overflow-auto">
-        <ExercisesMenu exercises={exercises} />
+        <ExercisesMenu />
       </div>
       <div className="lg:h-screen col-span-4 row-span-2 lg:col-span-3 z-10 overflow-auto">
         <BreathingAnimation />

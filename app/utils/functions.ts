@@ -1,22 +1,34 @@
 import { State } from "./types";
 
 export const getLoops = (state: State): number => {
-  let loops = 0;
-  const exhaleTime =
-    state.exerciseName === "asymmetric"
-      ? state.inhaleTime * 2
-      : state.inhaleTime;
-  if (!state.expiratoryApnea && !state.inspiratoryApnea) {
-    loops = Math.round(state.exerciseTime / (state.inhaleTime + exhaleTime));
-  } else if (!state.expiratoryApnea || !state.inspiratoryApnea) {
-    loops = Math.round(
-      state.exerciseTime / (state.inhaleTime * 2 + exhaleTime)
-    );
-  } else if (state.expiratoryApnea && state.inspiratoryApnea) {
-    loops = Math.round(
-      state.exerciseTime / (state.inhaleTime * 3 + exhaleTime)
-    );
-  }
+  const loopTime = getLoopTime(
+    state.inhaleTime,
+    state.exhale,
+    state.inspiratoryApnea,
+    state.expiratoryApnea
+  );
 
-  return loops;
+  const numberOfLoops = state.exerciseTime / loopTime;
+
+  return Number.isNaN(numberOfLoops) || numberOfLoops <= 0
+    ? 0
+    : Math.ceil(numberOfLoops);
+};
+
+const getLoopTime = (
+  inhaleTime: number,
+  exhale: number,
+  inspiratoryApnea: number,
+  expiratoryApnea: number
+): number => {
+  const exerciseExhaleTime = inhaleTime * exhale;
+  const exerciseInhaleApneaTime = inhaleTime * inspiratoryApnea;
+  const exerciseExhaleApneaTime = inhaleTime * expiratoryApnea;
+
+  return (
+    inhaleTime +
+    exerciseExhaleTime +
+    exerciseInhaleApneaTime +
+    exerciseExhaleApneaTime
+  );
 };

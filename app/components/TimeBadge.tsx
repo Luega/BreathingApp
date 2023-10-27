@@ -3,13 +3,13 @@ import classes from '../style/timeBadge.module.css'
 
 type Props = {
     emoji: string,
-    time: string,
+    time: number,
 }
 
 
 const TimeBadge = ({ emoji, time }: Props) => {
     const { state, setState } = useBreathingAppContext();
-    const exerciseTime: number = Number(time.split("m")[0]) * 60;
+    const exerciseTime: number = time * 60;
 
     const exerciseTimeHandler = () => {
         setState((prevState) => {
@@ -23,7 +23,7 @@ const TimeBadge = ({ emoji, time }: Props) => {
     return (
         <button onClick={() => exerciseTimeHandler()} className={`${classes.timeBadge} shadow-xl ${exerciseTime === state.exerciseTime && classes.selected}`}>
             <p className='mb-2 text-4xl'>{emoji}</p>
-            <p>{time}</p>
+            <p>{time.toString()}min.</p>
         </button>
     )
 }
