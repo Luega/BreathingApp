@@ -47,6 +47,12 @@ https://breathing-app-ecru.vercel.app/
 
 ## About the process
 
+### Tasks management with ClickUp:
+
+Link to the board:
+
+https://sharing.clickup.com/9012000258/b/h/6-901200706890-2/925800cd807150b
+
 ### UI with Figma :
 
 ![My Image](screenshot/figma_layout.png)
