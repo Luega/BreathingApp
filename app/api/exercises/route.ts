@@ -7,9 +7,13 @@ export async function GET(_req: Request, _res: Response) {
     return new Response(JSON.stringify(exercises), {
       status: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Credentials":
+          process.env.ACCESS_CONTROL_ALLOW_CREDENTIALS!,
+        "Access-Control-Allow-Origin": process.env.ACCESS_CONTROL_ALLOW_ORIGIN!,
+        "Access-Control-Allow-Methods":
+          process.env.ACCESS_CONTROL_ALLOW_METHODS!,
+        "Access-Control-Allow-Headers":
+          process.env.ACCESS_CONTROL_ALLOW_HEADERS!,
       },
     });
   } catch (error: any) {
