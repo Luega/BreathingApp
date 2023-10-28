@@ -50,6 +50,8 @@ const BreathingAnimation = () => {
       }, gsapContainer);
 
       return () => ctx.revert();
+    } else {
+      setBreathingPhase("Click to start")
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.isAnimationStarted]);
@@ -76,9 +78,7 @@ const BreathingAnimation = () => {
   }
 
   return (
-    <div ref={gsapContainer} onBlur={(e) => {
-      console.log(e.currentTarget);
-    }}>
+    <div ref={gsapContainer}>
       <div className="mb-5 md:mb-10 lg:my-10 px-3 grid grid-cols-2">
         <div className="flex flex-col justify-self-center text-sm md:text-lg">
           <div>Type: <span className={`${classes.alert_text} italic`}>{state.name === "" ? "None" : state.name}</span></div>
