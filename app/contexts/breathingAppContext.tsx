@@ -34,7 +34,13 @@ export const BreathingAppContextProvider = (props: PropsWithChildren) => {
     );
 
     useEffect(() => {
-        fetch(process.env.NEXT_PUBLIC_API_URL!)
+        fetch(process.env.NEXT_PUBLIC_API_URL!, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
             .then((response) => response.json())
             .then((result) => {
                 setExercises(result);
