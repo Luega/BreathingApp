@@ -7,7 +7,7 @@ export async function GET(_req: Request, _res: Response) {
     return new Response(JSON.stringify(exercises), {
       status: 200,
       headers: {
-        "Access-Control-Allow-Origin": `${process.env.CORS_URL}`,
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
       },
